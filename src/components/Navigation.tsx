@@ -26,19 +26,21 @@ export default function Navigation() {
           tabBarActiveTintColor: colors.main,
           tabBarInactiveTintColor: "gray",
           tabBarIcon: ({ color, size }) => {
-            // interface IIcon {
-            //   [index: string]: string;
-            // }
+            interface IIcon {
+              [index: string]: string;
+            }
             const icon = {
               [tabNames.photos]: "picture-in-picture-bottom-right",
               [tabNames.favorites]: "heart",
             };
+
+            const currentIcon = icon[route.name];
             // let key: keyof typeof icon;
             // const key = route.name;
             // const icons = key in icon ? icon[key] : "";
             return (
               <MaterialCommunityIcons
-                name={icon[route.name]}
+                name={currentIcon}
                 color={color}
                 size={size}
               />
