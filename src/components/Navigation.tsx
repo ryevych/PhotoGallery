@@ -18,29 +18,28 @@ export default function Navigation() {
       <Tab.Navigator
         screenOptions={({ route }) => ({
           headerStyle: {
-            backgroundColor: colors.main,
+            backgroundColor: colors.header,
           },
           headerTitleStyle: {
-            color: "white",
+            color: colors.main,
           },
+          tabBarActiveBackgroundColor: colors.tabBarActiveBackgroundColor,
           tabBarActiveTintColor: colors.main,
           tabBarInactiveTintColor: "gray",
           tabBarIcon: ({ color, size }) => {
             interface IIcon {
-              [index: string]: string;
+              [index: string]: keyof typeof MaterialCommunityIcons.glyphMap;
             }
-            const icon = {
+            const icon: IIcon = {
               [tabNames.photos]: "picture-in-picture-bottom-right",
               [tabNames.favorites]: "heart",
             };
 
-            const currentIcon = icon[route.name];
-            // let key: keyof typeof icon;
-            // const key = route.name;
-            // const icons = key in icon ? icon[key] : "";
+            let iconName: keyof typeof MaterialCommunityIcons.glyphMap = icon[route.name];
+            iconName = icon[route.name];
             return (
               <MaterialCommunityIcons
-                name={currentIcon}
+                name={iconName}
                 color={color}
                 size={size}
               />

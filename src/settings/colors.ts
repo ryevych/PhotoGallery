@@ -1,4 +1,6 @@
 export const colors = {
   main: "#193825",
-  screenBackground: "e3e8e5",
+  header: "#C2DFD1",
+  screenBackground: "#E6EFEB",
+  tabBarActiveBackgroundColor: "#C2DFD1",
 };

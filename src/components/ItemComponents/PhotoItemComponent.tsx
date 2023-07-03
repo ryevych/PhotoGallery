@@ -7,26 +7,24 @@ import {
 } from "react-native";
 import { IPhoto } from "../../models/IPhoto";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useAppDispatch } from "../../hooks/redux";
-import { favoritesActions } from "../../store/reducers/favoriteSlice";
 import { colors } from "../../settings/colors";
+import React from "react";
 
 interface PhotoItemComponentProps {
   item: IPhoto;
   isFavorite: boolean;
-}
+  handleFavoriteIconPress: Function,
+};
 
-export default function PhotoItemComponent({
+function PhotoItemComponent({
   item,
   isFavorite,
+  handleFavoriteIconPress,
 }: PhotoItemComponentProps) {
-  const dispatch = useAppDispatch();
 
   const handleIconPress = () => {
-    isFavorite
-      ? dispatch(favoritesActions.removeFromFavorites(item.id))
-      : dispatch(favoritesActions.addToFavorites(item));
-  };
+    handleFavoriteIconPress(item, isFavorite);
+  }
 
   const windowWidth = useWindowDimensions().width;
   const gap = 10;
@@ -50,6 +48,8 @@ export default function PhotoItemComponent({
     </View>
   );
 }
+
+export default React.memo(PhotoItemComponent);
 
 const styles = StyleSheet.create({
   container: {
