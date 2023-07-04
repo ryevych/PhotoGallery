@@ -5,6 +5,7 @@ import { colors } from "../../settings/colors";
 import PhotoItemComponent from "../ItemComponents/PhotoItemComponent";
 import { favoritesActions } from "../../store/reducers/favoriteSlice";
 import { IPhoto } from "../../models/IPhoto";
+import { gridLayout } from "../../settings/gridLayout";
 
 export default function FavoritesScreen() {
   const { favorites } = useAppSelector((state) => state.favoritesReducer);
@@ -36,7 +37,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.screenBackground,
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "center",
+    paddingHorizontal: gridLayout.gap / 2,
   },
 });

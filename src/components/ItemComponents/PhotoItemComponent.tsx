@@ -9,6 +9,7 @@ import { IPhoto } from "../../models/IPhoto";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { colors } from "../../settings/colors";
 import React from "react";
+import { gridLayout } from "../../settings/gridLayout";
 
 interface PhotoItemComponentProps {
   item: IPhoto;
@@ -27,7 +28,7 @@ function PhotoItemComponent({
   }
 
   const windowWidth = useWindowDimensions().width;
-  const gap = 10;
+  const gap = gridLayout.gap;
 
   return (
     <View
@@ -53,11 +54,10 @@ export default React.memo(PhotoItemComponent);
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
     backgroundColor: "#FFF",
+    paddingVertical: 10,
     paddingHorizontal: 10,
     borderRadius: 5,
-    borderWidth: 0,
   },
   image: {
     width: 100,

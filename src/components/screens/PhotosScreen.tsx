@@ -6,6 +6,7 @@ import PhotoItemComponent from "../ItemComponents/PhotoItemComponent";
 import { IPhoto } from "../../models/IPhoto";
 import { favoritesActions } from "../../store/reducers/favoriteSlice";
 import { useCallback, useState } from "react";
+import { gridLayout } from "../../settings/gridLayout";
 
 export default function PhotosScreen() {
   const [searchText, setSearchText] = useState("")
@@ -59,15 +60,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.screenBackground,
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "center",
+    paddingHorizontal: gridLayout.gap / 2,
   },
   message: {
     fontSize: 48
   },
   searchInput: {
     borderBottomWidth: 1,
-    width: "50%",
+    width: "45%",
+    fontSize: 20,
     margin: 10,
+    alignSelf: "flex-end"
   }
 });

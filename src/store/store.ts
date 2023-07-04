@@ -1,7 +1,11 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { configureStore, combineReducers, createStore } from "@reduxjs/toolkit";
 import { photosApi } from "./services/photoService";
 import favoritesReducer from "./reducers/favoriteSlice";
-import ExpoFileSystemStorage from "redux-persist-expo-filesystem";
+// import ExpoFileSystemStorage from "redux-persist-expo-filesystem";
+// import storage from 'redux-persist/lib/storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+// import FSStorage from 'redux-persist-fs-storage';
+
 import {
   persistStore,
   persistReducer,
@@ -20,7 +24,8 @@ export const rootReducer = combineReducers({
 
 const persistConfig = {
   key: "root",
-  storage: ExpoFileSystemStorage,
+  // storage: ExpoFileSystemStorage,
+  storage: AsyncStorage,
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
