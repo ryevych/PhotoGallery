@@ -1,13 +1,14 @@
-import { StyleSheet, View, FlatList, Text } from "react-native";
+import { StyleSheet, View, FlatList, Text, TextInput } from "react-native";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { colors } from "../../settings/colors";
 import { photosApi } from "../../store/services/photoService";
 import PhotoItemComponent from "../ItemComponents/PhotoItemComponent";
 import { IPhoto } from "../../models/IPhoto";
 import { favoritesActions } from "../../store/reducers/favoriteSlice";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 
 export default function PhotosScreen() {
+  const [searchText, setSearchText] = useState("")
   const {
     isLoading,
     error,
@@ -34,8 +35,9 @@ export default function PhotosScreen() {
 
   return (
     <View style={styles.container}>
+      <TextInput style={styles.searchInput} autoCapitalize="none" placeholder="Search item" value={searchText} onChangeText={setSearchText} />
       <FlatList
-        data={photos}
+        data={photos?.filter(item => item.title.includes(searchText))}
         numColumns={2}
         initialNumToRender={12}
         renderItem={({ item }) => (
@@ -62,5 +64,10 @@ const styles = StyleSheet.create({
   },
   message: {
     fontSize: 48
+  },
+  searchInput: {
+    borderBottomWidth: 1,
+    width: "50%",
+    margin: 10,
   }
 });
